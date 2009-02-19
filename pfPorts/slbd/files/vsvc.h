@@ -34,26 +34,27 @@
 
 struct vsvc_t {
   SLIST_ENTRY(vsvc_t)	next;
-  u_int32_t		dirty;
-  u_int32_t		id;
-  u_int32_t		rule_nr;
-  u_int32_t		services_len;
-  status_t		status;
+  u_int32_t   dirty;
+  u_int32_t   id;
+  u_int32_t   rule_nr;
+  u_int32_t   services_len;
+  status_t    status;
 #define VSVCSTATUS_ACTIVE	0x0001
 #define VSVCSTATUS_UP		0x0002
-  struct pf_pool		pool;
-  pthread_mutex_t		lock;
+  struct pf_pool    pool;
+  pthread_mutex_t   lock;
 #define MAXNAMELEN 255
-  char			name[MAXNAMELEN+1];
-  char			anchor[PF_ANCHOR_NAME_SIZE];
+  char    name[MAXNAMELEN+1];
+  char    anchor[PF_ANCHOR_NAME_SIZE];
 #ifdef OpenBSD3_5
-  char                    ruleset[PF_RULESET_NAME_SIZE];
+  char    ruleset[PF_RULESET_NAME_SIZE];
 #endif
-  struct sockaddr_in	addr;
-  struct sockaddr_in	sitedown;
-  struct service_t      **services;  /* to service_t[services_len] */
-  char			poolname[MAXNAMELEN+1];
-  int			needs_filter_reload;
+  struct sockaddr_in  addr;
+  struct sockaddr_in  sitedown;
+  struct service_t    **services;  /* to service_t[services_len] */
+  char                poolname[MAXNAMELEN+1];
+  int                 needs_filter_reload;
+  char                ifname[IFNAMSIZ];
 };
 
 #define	vsvc_getstatus(a)	(a->status)

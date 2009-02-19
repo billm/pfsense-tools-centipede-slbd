@@ -285,6 +285,8 @@ struct pfio {
     r.action = PF_RDR;
     r.af = AF_INET;
     r.proto = IPPROTO_TCP;
+    if (strlen(v->ifname))
+      (void)strlcpy(r.ifname, v->ifname, sizeof(r.ifname));
     r.dst.port_op = PF_OP_EQ;
     r.dst.port[0] = v->addr.sin_port;
     r.dst.port[1] = v->addr.sin_port;

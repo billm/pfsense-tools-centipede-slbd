@@ -181,6 +181,13 @@ int vsvc_getconfig(char *cfile) {
       strlcpy(v->poolname, str, MAXNAMELEN);
       free(str);
 
+      /* get ifname */
+      if (cgetstr(buf, "ifname", &str) <= 0) {
+      } else {
+        strlcpy(v->ifname, str, IFNAMSIZ);
+        free(str);
+      }
+
       /* get sitedown host */
       if (cgetstr(buf, "sitedown", &str) <= 0) {
         syslog(LOG_ERR, "Invalid sitedown for VIP %s",
