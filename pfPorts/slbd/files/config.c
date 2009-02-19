@@ -182,8 +182,7 @@ int vsvc_getconfig(char *cfile) {
       free(str);
 
       /* get ifname */
-      if (cgetstr(buf, "ifname", &str) <= 0) {
-      } else {
+      if (cgetstr(buf, "ifname", &str) > 0) {
         strlcpy(v->ifname, str, IFNAMSIZ);
         free(str);
       }
