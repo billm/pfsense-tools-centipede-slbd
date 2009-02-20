@@ -239,7 +239,7 @@ struct pfio {
 #endif
     io.ticket = pt.array->ticket;
 
-    SLIST_FOREACH(vf, &virtualservices, next) {
+    STAILQ_FOREACH(vf, &virtualservices, next) {
     /* add rule based on the up/down stuff in the vsvcs */
 #ifdef DEBUG
       warnx("adding rule %d", vf->id);

@@ -47,7 +47,7 @@
 
 #include "service.h"
 
-SLIST_HEAD(servicelist, service_t) services = SLIST_HEAD_INITIALIZER(services);
+STAILQ_HEAD(servicelist, service_t) services = STAILQ_HEAD_INITIALIZER(services);
 
 int init_service(struct service_t *s) {
 	memset((void *) s, 0x0, sizeof(*s));
@@ -58,7 +58,7 @@ int init_service(struct service_t *s) {
 		    strerror(errno));
 		return(1);
 	}
-	SLIST_INSERT_HEAD(&services, s, next);
+	STAILQ_INSERT_TAIL(&services, s, next);
 	return(0);
 }
 

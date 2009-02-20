@@ -33,7 +33,7 @@
 /* needs service.h and pfvar.h */
 
 struct vsvc_t {
-  SLIST_ENTRY(vsvc_t)	next;
+  STAILQ_ENTRY(vsvc_t)	next;
   u_int32_t   dirty;
   u_int32_t   id;
   u_int32_t   rule_nr;

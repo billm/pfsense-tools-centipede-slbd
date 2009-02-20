@@ -30,4 +30,4 @@
  *
  */
 
-extern SLIST_HEAD(, vsvc_t) virtualservices;
+extern STAILQ_HEAD(, vsvc_t) virtualservices;

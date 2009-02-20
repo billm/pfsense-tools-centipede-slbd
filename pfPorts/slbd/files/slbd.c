@@ -56,7 +56,7 @@
 #include "printers.h"
 #include "pollers.h"
 
-SLIST_HEAD(, vsvc_t) virtualservices;
+STAILQ_HEAD(, vsvc_t) virtualservices;
 
 void sigignore(int signal) {
 	return;
@@ -115,7 +115,7 @@ int main(int argc, char **argv) {
 	warnx("Testing services");
 #endif
 	/* do one round through the tests */
-	SLIST_FOREACH(v, &virtualservices, next) {
+	STAILQ_FOREACH(v, &virtualservices, next) {
 		for (i = 0; i < v->services_len; i++) {
 			polltype = getservice_polltype(v->services[i]);
                         if (polltype & \
@@ -174,7 +174,7 @@ int main(int argc, char **argv) {
 #ifdef DEBUG
 	warnx("spawning poller threads");
 #endif
-	SLIST_FOREACH(v, &virtualservices, next) {
+	STAILQ_FOREACH(v, &virtualservices, next) {
 #ifdef DEBUG
 		warnx("spawning poller thread %d", v->id);
 #endif

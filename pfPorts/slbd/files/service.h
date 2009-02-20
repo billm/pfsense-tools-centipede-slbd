@@ -34,11 +34,11 @@ typedef unsigned long status_t;
 typedef unsigned long polltype_t;
 
 
-/* SLIST_HEAD(servicelist, service_t) head = SLIST_HEAD_INITIALIZER(head); */
+/* STAILQ_HEAD(servicelist, service_t) head = STAILQ_HEAD_INITIALIZER(head); */
 
 /* our basic structure keeping track of a particular service */
 struct service_t {
-	SLIST_ENTRY(service_t) next;
+	STAILQ_ENTRY(service_t) next;
 	polltype_t	polltype;
 #define SVCPOLL_PING		0x0001
 #define SVCPOLL_TCP		0x0002

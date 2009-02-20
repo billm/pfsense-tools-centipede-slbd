@@ -92,7 +92,7 @@ int vsvc_getconfig(char *cfile) {
   static char   *configfiles[2] = { CONFIG_FILE , NULL };
   i = j = result = rport = vipport = 0;
 
-  SLIST_INIT(&virtualservices);
+  STAILQ_INIT(&virtualservices);
 
   cgetusedb(0); /* no unpredictable .db file behavior. */
 
@@ -362,7 +362,7 @@ int vsvc_getconfig(char *cfile) {
       v->rule_nr = v->id;
       v->dirty = 1;
 
-      SLIST_INSERT_HEAD(&virtualservices, v, next);
+      STAILQ_INSERT_TAIL(&virtualservices, v, next);
 
       if (vsvc_unlock(v)) {
         syslog(LOG_ERR, "Could not unlock VIP %s at "
